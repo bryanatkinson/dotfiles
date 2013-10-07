@@ -1,0 +1,4 @@
+#!/bin/bash
+
+client=$(wmii_find_client_id "$1")
+wmiir xwrite /tag/sel/ctl "select client $client"

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+COMMANDS=
+while getopts "hv" opt; do
+    case $opt in
+        h) COMMANDS="<C-w>s" ;;
+        v) COMMANDS="<C-w>v" ;;
+    esac
+done
+shift $((OPTIND-1))
+
+FULL_COMMAND="$COMMANDS:e $PWD/$1<CR>"
+wmii_focus_client 'gvim'
+gvim --remote-send "$FULL_COMMAND"

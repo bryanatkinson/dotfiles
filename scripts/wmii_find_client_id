@@ -1,0 +1,11 @@
+#!/bin/bash
+
+owins=$(wmiir ls /client | grep -v -e 'sel' | sed 's/.$//')
+for owin in $owins; do
+    wincount=$(wmiir read /client/$owin/props | grep -c -e "^$1\:")
+    if [ $wincount != 0 ]; then
+        echo $owin
+        break
+    fi
+done
+

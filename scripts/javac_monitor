@@ -1,0 +1,31 @@
+#!/bin/bash
+
+TESTS="-DskipTests"
+while getopts "t" opt; do
+    case $opt in
+      t) TESTS="" ;;
+      \?)
+          echo "Invalid option: -$OPTARG" >&2
+          exit 1
+          ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+DIR=$1
+if [[ -z "$1" ]]; then
+    DIR=$PWD
+fi
+
+echo "Monitoring $DIR"
+
+# Note: need to filter out a file called 4913 which vim creates and deletes every time a write 
+# happens to ensure it can write to the directory
+inotifywait -r -m --exclude "(target|4913|\.swp$|\.swx$|\.svn|\.class$|~$)" -e CLOSE_WRITE $DIR | while read line
+do
+  echo "$line has been written"
+  javac $DIR/*.java
+  echo "Monitoring for changes..."
+done
+

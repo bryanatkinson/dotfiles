@@ -1,0 +1,40 @@
+#!/bin/bash
+
+TESTS="-DskipTests"
+TARGET="clean install"
+
+while getopts "ts:ejx" opt; do
+    case $opt in
+      t) TESTS="" ;;
+      s) TESTS="-Dtest=$OPTARG" ; TARGET="test";;
+      e) TARGET="$TARGET exec:java" ;;
+      j) TARGET="$TARGET jetty:run-exploded";;
+      x) export VIM_ERROR_HIGHLIGHT="true";;
+      \?) echo "Invalid option: -$OPTARG" >&2
+          exit 1
+          ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+DIR=$1
+if [[ -z "$1" ]]; then
+    DIR=$PWD
+fi
+
+echo "Monitoring $DIR"
+
+# Note: need to filter out a file called 4913 which vim creates and deletes every time a write 
+# happens to ensure it can write to the directory
+inotifywait -r -m --exclude "(logs|target|4913|\.swp$|\.swx$|\.svn|\.data|java.io.tmpdir|\.log|~$)" -e CLOSE_WRITE $DIR | while read line
+do
+  echo "$line has been written"
+  if [[ $JETTY_ID ]]; then
+      pkill -P $JETTY_ID
+  fi
+  mvn-colour $TARGET $TESTS &
+  JETTY_ID=$!
+  echo "Monitoring for changes..."
+done
+

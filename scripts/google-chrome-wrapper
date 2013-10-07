@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wmii_focus_client 'google-chrome'
+exec google-chrome $1

@@ -1,0 +1,2 @@
+#!/bin/bash
+find -name "*$1*.java" | egrep --color=auto "$1"
