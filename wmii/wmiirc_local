@@ -1,0 +1,10 @@
+MODKEY=Mod4
+
+Key $MODKEY-z
+    lockScreen
+
+export WMII_TERM="urxvt"
+
+lockScreen() {
+    xlock
+}
