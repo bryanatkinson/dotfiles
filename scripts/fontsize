@@ -1,0 +1,3 @@
+#!/bin/bash
+
+printf '\33]50;%s\007' "xft:Droid Sans Mono:pixelsize=$1,style=bold"

@@ -35,8 +35,8 @@ Xft.rgba: rgb
 
 ! URxvt*font:  -windows-proggytinysz-medium-r-normal--10-80-96-96-c-60-iso8859-1
 ! URxvt*boldFont: -fontforge-proggytinysz-bold-r-normal--10-80-96-96-c-60-iso8859-1
-URxvt*font: xft:Droid Sans Mono:pixelsize=9,style=regular
-URxvt*boldFont: xft:Droid Sans Mono:pixelsize=9,style=bold
+URxvt*font: xft:Droid Sans Mono for Powerline:pixelsize=9,style=regular
+URxvt*boldFont: xft:Droid Sans Mono for Powerline:pixelsize=9,style=bold
 
 URxvt.perl-ext-common : default,readline,keyboard-select,url-select
 URxvt.keysym.M-Escape: perl:keyboard-select:activate

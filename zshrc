@@ -1,6 +1,8 @@
 #{{{ General
+#source ~/.zsh/git-prompt/zshrc.sh
+
 autoload -U colors && colors
-PS1="%{$fg[green]%}[%~]
+PS1="%{$fg[green]%}[%~] 
 %m%%%{$reset_color%} " 
 
 watch=(notme)                   # watch for everybody but me
@@ -294,6 +296,8 @@ alias xgrep="egrep --include '*.xml' --exclude='*.log*' -n -r"
 alias pygrep="egrep --include '*.py' --exclude='*.log*' -n -r"
 alias sgrep="egrep --include '*.scala' --exclude='*.log*' -n -r"
 alias plgrep="egrep --include '*.pl' --exclude='*.log*' -n -r"
+alias cd-='cd -'
+alias mo="export MAVEN_OPTS=\"-Xmx14g -Xms14g -XX:MaxPermSize=256M -XX:+UseG1GC\""
 #
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -303,3 +307,24 @@ alias mvn='mvn-colour'
 #}}}
 
 source ~/.zshrc_local
+
+#export PATH=$PATH:~/.local/bin
+#. /home/likewise-open/INDIMENSIONS/bryan.atkinson/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats '%F{2}  %b%f '
+zstyle ':vcs_info:*' formats '%F{2}  %b%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+
+zstyle ':vcs_info:*' enable git cvs svn
+
+# or use pre_cmd, see man zshcontrib
+vcs_info_wrapper() {
+  vcs_info
+  if [ -n "$vcs_info_msg_0_" ]; then
+    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+  fi
+}
+RPROMPT=$'$(vcs_info_wrapper)'
+
