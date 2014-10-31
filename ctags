@@ -1,0 +1,20 @@
+--langdef=Scala
+--langmap=Scala:.scala
+--regex-Scala=/^[^\*\/]*class[ \t]*([a-zA-Z0-9_]+)/\1/c,classes/
+--regex-Scala=/^[^\*\/]*object[ \t]*([a-zA-Z0-9_]+)/\1/o,objects/
+--regex-scala=/^[^\*\/]*trait[ \t]*([a-zA-Z0-9_]+)/\1/t,traits/
+--regex-Scala=/^[^\*\/]*case[ \t]*class[ \t]*([a-zA-Z0-9_]+)/\1/q,case-classes/
+--regex-Scala=/^[^\*\/]*abstract[ \t]*class[ \t]*([a-zA-Z0-9_]+)/\1/a,abstract-classes/
+--regex-Scala=/^[^\*\/]*def[ \t]*([a-zA-Z0-9_]+)/\1/m,methods/
+
+--exclude=target
+--exclude=bin
+--exclude=fallback
+--exclude=*.js
+--exclude=*.py
+--exclude=*.xml
+--exclude=*.log
+--exclude=*.css
+--exclude=*.html
+
+--fields=+f+a+i+K+l+m+n+s+S+z+t

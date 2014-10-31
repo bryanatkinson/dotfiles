@@ -15,5 +15,6 @@ ln -s ~/dotfiles/Xdefaults ~/.Xdefaults
 ln -s ~/dotfiles/Xmodmap ~/.Xmodmap
 ln -s ~/dotfiles/wmii ~/.wmii
 ln -s ~/dotfiles/zsh_plugins ~/.zsh_plugins
+ln -s ~/dotfiles/ctags ~/.ctags
 
 git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh
