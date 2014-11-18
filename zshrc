@@ -298,6 +298,8 @@ alias sgrep="egrep --include '*.scala' --exclude='*.log*' -n -r"
 alias plgrep="egrep --include '*.pl' --exclude='*.log*' -n -r"
 alias cd-='cd -'
 alias mo="export MAVEN_OPTS=\"-Xmx14g -Xms14g -XX:MaxPermSize=256M -XX:+UseG1GC\""
+alias git-conflicts="git ls-files -u | cut -f 2 | sort -u"
+alias jsonpretty="python -mjson.tool"
 #
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
